@@ -180,6 +180,15 @@ bool TMatrix<ValType>::operator!=(const TMatrix<ValType> &mt) const
 template <class ValType> // присваивание
 TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 {
+	if (Size != mt.Size) {
+		Size = mt.Size;
+		delete[] pVector;
+		pVector = new TVector<T>[size];
+	}
+	StartIndex = mt.StartIndex;
+	for (int i = 0; i < size; i++)
+		pVector[i] = v.pVector[i];
+	return *this;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сложение
